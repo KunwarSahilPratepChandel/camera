@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mobile Camera Access</title>
+</head>
+<body>
+  <h2>Tap the button to access camera</h2>
+  <button onclick="startCamera()">Start Camera</button><br><br>
+  <video id="video" width="300" height="300" autoplay></video>
+
+  <script>
+    function startCamera() {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+          const video = document.getElementById('video');
+          video.srcObject = stream;
+        })
+        .catch(function (error) {
+          alert('Error accessing camera: ' + error.message);
+        });
+    }
+  </script>
+</body>
+</html>
